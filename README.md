@@ -1,17 +1,29 @@
-# Makefile-template
+# UPO-Programming-2
 
-Template repository to build a set of applications and dependencies with makefile in C
+C list concepts and improvements for students and developers.
 
-## Structure
+## Linked list
 
-- [apps](./apps): Application directory (e.g.: creating a postfix evaluator)
-  - [mk](./apps/mk): Directory containing all custom makefile (e.g.: `postfix.mk` which takes care of telling makefile to compile `apps_targets` with `postfix`)
-- [bin](./bin): Binaries directory, after `make all` or `make bin` an archive will be created that includes all `src` code
-  - [mk](./bin/mk): Makefile directory to extend binaries
-- [include](./include): Headers directory, this directory is meant for **public headers** and public headers only
-- [src](./src): Source directory, use this directory for structures codes or private implementations (e.g.: stack implementation and its own private header). All this code will be compiled and sent to bin `libcompiled.a`
-- [test](./test): Test directory, this directory is meant for tests code
+A linked list is an **Abstract Data Type** (or ADT) which performs literally a list of elements.
 
-## Suggest an improvement
+It's called **linked** for its own particular structure:
 
-Feel free to suggest new features [here](https://github.com/Ziocash/Makefile-template/issues/new)
+```c
+// defined in list_private.h, part of private implementation
+
+struct upo_list_node_s
+{
+    void *value; // Any type of value (generic pointer)
+    struct upo_list_node_s *next; // Pointer to next value
+};
+
+typedef struct upo_list_node_s upo_list_node_t; // Aliasing for struct
+
+// List structure
+struct upo_list_s 
+{
+    upo_list_node_t *head; // Pointer to head node
+    size_t size; // List size
+    upo_list_comparator_t cmp; // Pointer containing comparison function
+};
+```
